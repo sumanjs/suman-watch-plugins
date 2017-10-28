@@ -4,7 +4,7 @@
   "description": "Plugins to be used with suman-watch utilities.",
   "main": "index.js",
   "scripts": {
-    "test": "suman"
+    "test": "./scripts/test.sh"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/sumanjs/suman-watch-plugins/issues"
   },
-  "homepage": "https://github.com/sumanjs/suman-watch-plugins#readme"
+  "homepage": "https://github.com/sumanjs/suman-watch-plugins#readme",
+  "devDependencies": {
+    "@types/core-js": "^0.9.43",
+    "@types/node": "^8.0.47"
+  }
 }

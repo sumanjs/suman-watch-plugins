@@ -1,0 +1,15 @@
+{
+  "linkToItself": true,
+  "searchRoots": [
+    "$HOME/WebstormProjects/oresoftware"
+  ],
+  "ignore": [
+    "/node_modules/",
+    "/.git/"
+  ],
+  "list": [
+    "suman-utils",
+    "suman-browser-polyfills",
+    "suman-types"
+  ]
+}
