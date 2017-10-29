@@ -1,5 +1,5 @@
 
-# How to create a new suman-watch-plugin
+# How to create a new Suman-Watch plugin
 
 ## What are suman-watch-plugins for?
 
@@ -7,7 +7,7 @@ If you don't know, the purpose of this project's plugins, is so that suman-watch
 such as `webpack -w` and `tsc -w`.
 
 <p>
-This works by reading from the stdout of the other watchers to find out when builds are ready to execute.
+This currently only works by reading from the stdout of the other watchers to find out when builds are ready to execute.
 
 ## Creating your plugin
 

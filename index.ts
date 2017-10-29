@@ -1,8 +1,18 @@
 import fs = require('fs');
 import path = require('path');
 
-export interface IEnvObject {  // for example, the type of `process.env`
+export interface IEnvObject {  // for example, this is the type of `process.env`
   [key: string]: string
+}
+
+export interface ISumanWatchPluginModule {
+  exportName: string,
+  value: ISumanWatchPlugin,
+  getCustomValue: (input: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin
+}
+
+export interface ISumanWatchPluginModules {
+  [key: string]: ISumanWatchPluginModule
 }
 
 export interface ISumanWatchPlugin {
@@ -14,16 +24,6 @@ export interface ISumanWatchPlugin {
   pluginExec: string,  //  this string is run via bash to start the plugin watch process
   stdoutStartTranspileRegex: RegExp, // this regex is used to match against stdout
   stdoutEndTranspileRegex: RegExp, // this regex is used to match against stdout
-}
-
-export interface ISumanWatchPluginModule {
-  exportName: string,
-  value: ISumanWatchPlugin,
-  getCustomValue: (input: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin
-}
-
-export interface ISumanWatchPluginModules {
-  [key: string]: ISumanWatchPluginModule
 }
 
 export const plugins = {} as ISumanWatchPluginModules;

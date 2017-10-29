@@ -3,7 +3,7 @@
 SUMAN=$(which suman);
 
 if [[ -z ${SUMAN} ]]; then
-npm install -g suman
+    npm install -g suman
 fi
 
-suman test
+suman "test/**/*.js"
