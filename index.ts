@@ -1,16 +1,19 @@
 import fs = require('fs');
 import path = require('path');
 
-export interface IEnvObject {
+export interface IEnvObject {  // for example, the type of `process.env`
   [key: string]: string
 }
 
 export interface ISumanWatchPlugin {
-  cwd: string,
-  env: IEnvObject,
-  exec: string,
-  stdoutStartTranspileRegex: RegExp,
-  stdoutEndTranspileRegex: RegExp,
+  execTests?: string, // if the plugin is good, it can dictate how to run tests too
+  pluginName: string, // the unique name of the plugin
+  isSumanWatchPluginValue: true,  // constant that tells suman what is what
+  pluginCwd: string,  // when the plugin watch process starts, this is it's current working dir
+  pluginEnv: IEnvObject, // when the plugin watch process starts, this will be added to process.env
+  pluginExec: string,  //  this string is run via bash to start the plugin watch process
+  stdoutStartTranspileRegex: RegExp, // this regex is used to match against stdout
+  stdoutEndTranspileRegex: RegExp, // this regex is used to match against stdout
 }
 
 export interface ISumanWatchPluginModule {

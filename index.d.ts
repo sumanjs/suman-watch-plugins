@@ -2,9 +2,12 @@ export interface IEnvObject {
     [key: string]: string;
 }
 export interface ISumanWatchPlugin {
-    cwd: string;
-    env: IEnvObject;
-    exec: string;
+    execTests?: string;
+    pluginName: string;
+    isSumanWatchPluginValue: true;
+    pluginCwd: string;
+    pluginEnv: IEnvObject;
+    pluginExec: string;
     stdoutStartTranspileRegex: RegExp;
     stdoutEndTranspileRegex: RegExp;
 }
