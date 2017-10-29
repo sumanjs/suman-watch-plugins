@@ -11,14 +11,14 @@ exports.value = Object.freeze({
     pluginName: exports.exportName + '-watch-plugin',
     pluginCwd: process.cwd(),
     pluginEnv: process.env,
-    pluginExec: 'tsc -w -p "$(pwd)/tsconfig.test.json"',
-    stdoutStartTranspileRegex: /starting incremental compilation/i,
-    stdoutEndTranspileRegex: /compilation complete/i,
+    pluginExec: 'webpack -w --config "$(pwd)/webpack.test.config.js"',
+    stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+    stdoutEndTranspileRegex: /Asset[\s]+Size[\s]+Chunks/i,
 });
 exports.getCustomValue = function (input) {
     var env = input.pluginEnv;
     delete input.pluginEnv;
-    env && assert(su.isObject(env), '"pluginEnv" property must be a plain object.');
+    env && assert(su.isObject(env), 'if "pluginEnv" property exists, it must be a plain object.');
     var overrideObject = {
         isSumanWatchPluginValue: true,
     };

@@ -27,5 +27,9 @@
   "devDependencies": {
     "@types/core-js": "^0.9.43",
     "@types/node": "^8.0.47"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "suman-utils": "0.0.73121"
   }
 }

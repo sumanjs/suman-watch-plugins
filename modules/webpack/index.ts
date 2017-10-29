@@ -8,6 +8,7 @@ import path = require('path');
 import assert = require('assert');
 
 //npm
+import chalk from 'chalk';
 import su = require('suman-utils');
 
 //project
@@ -24,15 +25,15 @@ export const value = <ISumanWatchPlugin> Object.freeze({
   pluginName: exportName + '-watch-plugin',
   pluginCwd: process.cwd(),
   pluginEnv: process.env,
-  pluginExec: 'tsc -w -p "$(pwd)/tsconfig.test.json"',
-  stdoutStartTranspileRegex: /starting incremental compilation/i,
-  stdoutEndTranspileRegex: /compilation complete/i,
+  pluginExec: 'webpack -w --config "$(pwd)/webpack.test.config.js"',
+  stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+  stdoutEndTranspileRegex: /Asset[\s]+Size[\s]+Chunks/i,
 });
 
 export const getCustomValue = function (input: Partial<ISumanWatchPlugin>) {
   const env = input.pluginEnv;
   delete input.pluginEnv; // we delete the property since we must "manually" combine it
-  env && assert(su.isObject(env), '"pluginEnv" property must be a plain object.');
+  env && assert(su.isObject(env), 'if "pluginEnv" property exists, it must be a plain object.');
 
   const overrideObject =  {
     isSumanWatchPluginValue: true, // this key should always be set to true

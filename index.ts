@@ -1,5 +1,12 @@
 import fs = require('fs');
 import path = require('path');
+import assert = require('assert');
+import su = require('suman-utils');
+import util = require('util');
+import {log} from './lib/logging';
+import chalk = require('chalk');
+
+//////////////////////////////////////////////////////////////////////
 
 export interface IEnvObject {  // for example, this is the type of `process.env`
   [key: string]: string
@@ -34,3 +41,5 @@ fs.readdirSync(modules).forEach(function (item) {
   const mod = require(file) as ISumanWatchPluginModule;
   plugins[mod.exportName] = mod;
 });
+
+
