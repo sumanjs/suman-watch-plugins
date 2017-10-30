@@ -1,5 +1,5 @@
-import { ISumanWatchPlugin } from "../../index";
+import { ISumanWatchPlugin, IPluginValues } from "../../index";
 export declare const exportName: string;
 export declare const isSumanWatchPluginModule: boolean;
-export declare const value: ISumanWatchPlugin;
-export declare const getCustomValue: (input: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin;
+export declare const values: IPluginValues;
+export declare const getValue: (version?: string, input?: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin;

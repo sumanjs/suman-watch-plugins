@@ -8,6 +8,7 @@ import path = require('path');
 import assert = require('assert');
 
 //npm
+import chalk from 'chalk';
 import su = require('suman-utils');
 
 //project
@@ -21,17 +22,17 @@ export const isSumanWatchPluginModule = true;
 
 const values: IPluginValues = Object.freeze({
 
-  '2.3.4': {
-    version: '2.3.4',
+  '6.24.1': {
+    version: '6.24.1',
     isSumanWatchPluginValue: true,
     pluginName: exportName + '-watch-plugin',
     pluginCwd: process.cwd(),
     pluginEnv: process.env,
-    pluginExec: 'tsc -w -p "$(pwd)/tsconfig.test.json"',
-    stdoutStartTranspileRegex: /starting incremental compilation/i,
-    stdoutEndTranspileRegex: /compilation complete/i,
-
+    pluginExec: 'set -e; rm -rf @target; babel -w @src --out-dir=@target',
+    stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+    stdoutEndTranspileRegex: /\s{1,3}->\s{1,3}/i,
   }
+
 });
 
 export const getValue = function (version?: string, input?: Partial<ISumanWatchPlugin>) {
@@ -46,8 +47,6 @@ export const getValue = function (version?: string, input?: Partial<ISumanWatchP
   return utils.getValue(version, input, exportName, values);
 };
 
-
-// validate plugin values
 utils.validatePluginValues(values);
 
 

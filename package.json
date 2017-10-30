@@ -24,12 +24,13 @@
     "url": "https://github.com/sumanjs/suman-watch-plugins/issues"
   },
   "homepage": "https://github.com/sumanjs/suman-watch-plugins#readme",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "semver": "^5.4.1",
+    "suman-utils": "0.0.73121"
+  },
   "devDependencies": {
     "@types/core-js": "^0.9.43",
     "@types/node": "^8.0.47"
-  },
-  "dependencies": {
-    "chalk": "^2.3.0",
-    "suman-utils": "0.0.73121"
   }
 }

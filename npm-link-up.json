@@ -7,9 +7,17 @@
     "/node_modules/",
     "/.git/"
   ],
+  "comments":[
+
+  ],
   "list": [
     "suman-utils",
     "suman-browser-polyfills",
-    "suman-types"
+    "suman-types",
+    "suman-watch",
+    "suman-events",
+    "suman-run-plugins",
+    "suman-transform-plugins",
+    "suman-reporters"
   ]
 }

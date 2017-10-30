@@ -12,10 +12,14 @@ export interface IEnvObject {  // for example, this is the type of `process.env`
   [key: string]: string
 }
 
+export interface IPluginValues {
+  [key: string]: ISumanWatchPlugin
+}
+
 export interface ISumanWatchPluginModule {
   exportName: string,
   value: ISumanWatchPlugin,
-  getCustomValue: (input: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin
+  getValue: (input: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin
 }
 
 export interface ISumanWatchPluginModules {
@@ -23,9 +27,10 @@ export interface ISumanWatchPluginModules {
 }
 
 export interface ISumanWatchPlugin {
+  version: string,
   execTests?: string, // if the plugin is good, it can dictate how to run tests too
   pluginName: string, // the unique name of the plugin
-  isSumanWatchPluginValue: true,  // constant that tells suman what is what
+  isSumanWatchPluginValue: boolean,  // constant that tells suman what is what
   pluginCwd: string,  // when the plugin watch process starts, this is it's current working dir
   pluginEnv: IEnvObject, // when the plugin watch process starts, this will be added to process.env
   pluginExec: string,  //  this string is run via bash to start the plugin watch process

@@ -7,15 +7,15 @@ var util_1 = require("../../lib/util");
 exports.exportName = String(path.basename(__dirname)).toLowerCase().replace(/[^a-zA-Z]/, '');
 exports.isSumanWatchPluginModule = true;
 var values = Object.freeze({
-    '2.3.4': {
-        version: '2.3.4',
+    '6.24.1': {
+        version: '6.24.1',
         isSumanWatchPluginValue: true,
         pluginName: exports.exportName + '-watch-plugin',
         pluginCwd: process.cwd(),
         pluginEnv: process.env,
-        pluginExec: 'tsc -w -p "$(pwd)/tsconfig.test.json"',
-        stdoutStartTranspileRegex: /starting incremental compilation/i,
-        stdoutEndTranspileRegex: /compilation complete/i,
+        pluginExec: 'set -e; rm -rf @target; babel -w @src --out-dir=@target',
+        stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+        stdoutEndTranspileRegex: /\s{1,3}->\s{1,3}/i,
     }
 });
 exports.getValue = function (version, input) {

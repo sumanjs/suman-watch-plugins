@@ -1,7 +1,7 @@
 'use strict';
 
 //dts
-import {ISumanWatchPlugin, IEnvObject} from "../../index";
+import {ISumanWatchPlugin, IEnvObject, IPluginValues} from "../../index";
 
 //core
 import path = require('path');
@@ -13,41 +13,42 @@ import su = require('suman-utils');
 
 //project
 import {log} from '../../lib/logging';
-import {validatePlugin} from "../../lib/util";
+import {utils} from "../../lib/util";
 
 //////////////////////////////////////////////////////////////////////
 
 export const exportName = String(path.basename(__dirname)).toLowerCase().replace(/[^a-zA-Z]/, '');
 export const isSumanWatchPluginModule = true;
 
-export const value = <ISumanWatchPlugin> Object.freeze({
-  isSumanWatchPluginValue: true,
-  pluginName: exportName + '-watch-plugin',
-  pluginCwd: process.cwd(),
-  pluginEnv: process.env,
-  pluginExec: 'webpack -w --config "$(pwd)/webpack.test.config.js"',
-  stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
-  stdoutEndTranspileRegex: /Asset[\s]+Size[\s]+Chunks/i,
-});
+export const values: IPluginValues = Object.freeze({
 
-export const getCustomValue = function (input: Partial<ISumanWatchPlugin>) {
-  const env = input.pluginEnv;
-  delete input.pluginEnv; // we delete the property since we must "manually" combine it
-  env && assert(su.isObject(env), 'if "pluginEnv" property exists, it must be a plain object.');
-
-  const overrideObject =  {
-    isSumanWatchPluginValue: true, // this key should always be set to true
-  } as Partial<ISumanWatchPlugin>;
-
-  if(env){
-    overrideObject['pluginEnv'] =  Object.assign({}, process.env, value.pluginEnv, env)
+  '2.3.3': {
+    version: '2.3.3',
+    isSumanWatchPluginValue: true,
+    pluginName: exportName + '-watch-plugin',
+    pluginCwd: process.cwd(),
+    pluginEnv: process.env,
+    pluginExec: 'webpack -w --config "$(pwd)/webpack.test.config.js"',
+    stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+    stdoutEndTranspileRegex: /Asset[\s]+Size[\s]+Chunks/i,
   }
 
-  return validatePlugin(Object.assign({}, value, input, overrideObject));
+});
+
+export const getValue = function (version?: string, input?: Partial<ISumanWatchPlugin>) {
+
+  if (su.isObject(version)) {
+    log.warning(`suman-watch-plugin with name '${exportName}',` +
+      ` is using the latest version of the plugin because no desired version was passed as the first argument to getValue().`);
+    input = version as Partial<ISumanWatchPlugin>;
+    version = 'latest';
+  }
+
+  return utils.getValue(version, input, exportName, values);
 };
 
+// validate plugin values
+utils.validatePluginValues(values);
 
-exports[exportName + 'Plugin'] = value;
-validatePlugin(value);
 
 
