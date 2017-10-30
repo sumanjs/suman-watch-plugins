@@ -28,3 +28,4 @@ exports.getValue = function (version, input) {
     return util_1.utils.getValue(version, input, exports.exportName, exports.values);
 };
 util_1.utils.validatePluginValues(exports.values);
+exports[exports.exportName + 'Plugin'] = module.exports;

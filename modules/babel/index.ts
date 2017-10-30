@@ -49,4 +49,4 @@ export const getValue = function (version?: string, input?: Partial<ISumanWatchP
 
 utils.validatePluginValues(values);
 
-
+exports[exportName + 'Plugin'] = module.exports;

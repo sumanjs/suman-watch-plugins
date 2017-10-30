@@ -21,7 +21,7 @@ import {log} from './logging';
 
 export const utils = {
 
-  getValue(version: string, input: Partial<ISumanWatchPlugin>, exportName: string, values: IPluginValues){
+  getValue(version: string, input: Partial<ISumanWatchPlugin>, exportName: string, values: IPluginValues) {
 
     const env = input.pluginEnv;
     delete input.pluginEnv; // we delete the property since we must "manually" combine it
@@ -35,7 +35,8 @@ export const utils = {
 
     let value: ISumanWatchPlugin;
     if (version === 'latest') {
-      value = values[keys.length - 1];
+      let key = keys[keys.length - 1];
+      value = values[key];
     }
     else {
       value = utils.getValueViaSemverVersion(version, exportName, values);
@@ -67,15 +68,15 @@ export const utils = {
 
   },
 
-  validatePluginValues (values: IPluginValues) {
+  validatePluginValues(values: IPluginValues) {
 
-    Object.keys(values).forEach(function(k){
+    Object.keys(values).forEach(function (k) {
       utils.validatePlugin(values[k], k);
     });
 
   },
 
-  getValueViaSemverVersion (version: string, pluginName: string, values: IPluginValues) {
+  getValueViaSemverVersion(version: string, pluginName: string, values: IPluginValues) {
 
     try {
       assert(semver.valid(version));
@@ -85,14 +86,22 @@ export const utils = {
     }
 
     let prev: ISumanWatchPlugin;
-    const keys = Object.keys(values);
+    const keys = Object.keys(values).sort(function (a, b) {
+      if (semver.gt(a, b)) {
+        return 1;
+      }
+      else if (semver.lt(a, b)) {
+        return -1
+      }
+      return 0;
+    });
 
     for (let i = 0; i < keys.length; i++) {
       let key = keys[i];
       if (semver.gt(key, version)) {
         return prev || values[key];
       }
-      else if (semver.lt()) {
+      else if (semver.lt(key, version)) {
         prev = values[key]
       }
       else {

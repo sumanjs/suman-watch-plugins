@@ -4,7 +4,7 @@
 const os = require('os');
 const path = require('path');
 const numOfCPUs = os.cpus().length || 1;
-const babelPlugin = require('suman-watch-plugins/modules/babel-v6.24');
+const babelPlugin = require('suman-watch-plugins/modules/babel');
 
 module.exports = {
 
