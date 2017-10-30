@@ -12,7 +12,7 @@ import assert = require('assert');
 import su = require('suman-utils');
 import util = require('util');
 import chalk from 'chalk';
-import semver = require('semver');
+const semver = require('semver');
 
 //project
 import {log} from './logging';
@@ -68,7 +68,7 @@ export const utils = {
     }
 
     if (env) {
-      overrideObject['pluginEnv'] = Object.assign({}, process.env, value.pluginEnv, env)
+      overrideObject.pluginEnv = Object.assign({}, process.env, value.pluginEnv, env)
     }
 
     return utils.validatePlugin(Object.assign({}, value, input, overrideObject), value.version);
