@@ -19,7 +19,7 @@ export interface IPluginValues {
 export interface ISumanWatchPluginModule {
   exportName: string,
   value: ISumanWatchPlugin,
-  getValue: (input: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin
+  getValue: (version?: string, input?: Partial<ISumanWatchPlugin>) => ISumanWatchPlugin
 }
 
 export interface ISumanWatchPluginModules {

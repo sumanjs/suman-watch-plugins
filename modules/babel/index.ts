@@ -31,7 +31,30 @@ const values: IPluginValues = Object.freeze({
     pluginExec: 'set -e; rm -rf @target; babel -w @src --out-dir=@target',
     stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
     stdoutEndTranspileRegex: /\s{1,3}->\s{1,3}/i,
-  }
+  },
+
+  '6.24.5': {
+    version: '6.24.5',
+    isSumanWatchPluginValue: true,
+    pluginName: exportName + '-watch-plugin',
+    pluginCwd: process.cwd(),
+    pluginEnv: process.env,
+    pluginExec: 'set -e; rm -rf @target; babel -w @src --out-dir=@target',
+    stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+    stdoutEndTranspileRegex: /\s{1,3}->\s{1,3}/i,
+  },
+
+  '6.24.3': {
+    version: '6.24.3',
+    isSumanWatchPluginValue: true,
+    pluginName: exportName + '-watch-plugin',
+    pluginCwd: process.cwd(),
+    pluginEnv: process.env,
+    pluginExec: 'set -e; rm -rf @target; babel -w @src --out-dir=@target',
+    stdoutStartTranspileRegex: /currently unknown matching string (sad face)/i,
+    stdoutEndTranspileRegex: /\s{1,3}->\s{1,3}/i,
+  },
+
 
 });
 

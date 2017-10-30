@@ -19,10 +19,36 @@ import {log} from './logging';
 
 ///////////////////////////////////////////////////////////////////////////
 
+const sortBySemverVersion = function (a: string, b: string) {
+  if (semver.gt(a, b)) {
+    return 1;
+  }
+  else if (semver.lt(a, b)) {
+    return -1
+  }
+  return 0;
+};
+
+const getLastValue = function (values: IPluginValues, type?: string,) {
+
+  type = type || 'semver';
+
+  const keys = Object.keys(values);
+
+  switch (type) {
+    case 'semver':
+      keys.sort(sortBySemverVersion);
+  }
+
+  const finalKey = keys[keys.length - 1];
+  return values[finalKey];
+};
+
 export const utils = {
 
-  getValue(version: string, input: Partial<ISumanWatchPlugin>, exportName: string, values: IPluginValues) {
+  getValue(version: string, input: Partial<ISumanWatchPlugin>, exportName: string, values: IPluginValues, versioningType?: string) {
 
+    versioningType = versioningType || 'semver';
     const env = input.pluginEnv;
     delete input.pluginEnv; // we delete the property since we must "manually" combine it
     env && assert(su.isObject(env), 'if "pluginEnv" property exists, it must be a plain object.');
@@ -35,8 +61,7 @@ export const utils = {
 
     let value: ISumanWatchPlugin;
     if (version === 'latest') {
-      let key = keys[keys.length - 1];
-      value = values[key];
+      value = getLastValue(values, versioningType);
     }
     else {
       value = utils.getValueViaSemverVersion(version, exportName, values);
@@ -86,15 +111,7 @@ export const utils = {
     }
 
     let prev: ISumanWatchPlugin;
-    const keys = Object.keys(values).sort(function (a, b) {
-      if (semver.gt(a, b)) {
-        return 1;
-      }
-      else if (semver.lt(a, b)) {
-        return -1
-      }
-      return 0;
-    });
+    const keys = Object.keys(values).sort(sortBySemverVersion);
 
     for (let i = 0; i < keys.length; i++) {
       let key = keys[i];
