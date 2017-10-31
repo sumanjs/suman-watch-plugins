@@ -1,5 +1,8 @@
 'use strict';
 
+//dts
+import {ISumanConfig} from "suman-types/dts/global"
+
 //polyfills
 const process = require('suman-browser-polyfills/modules/process');
 const global = require('suman-browser-polyfills/modules/global');
@@ -12,6 +15,7 @@ const name = ' [suman-watch-plugins] ';
 
 ///////////////////////////////////////////////////////////////////////////
 
+//
 export const log = {
   info: console.log.bind(console, name),
   good: console.log.bind(console, chalk.cyan(name)),
