@@ -16,6 +16,7 @@
     "watch",
     "testing",
     "dx",
+    "dev-ex",
     "developer-experience"
   ],
   "author": "Olegzandr VD",
@@ -27,7 +28,7 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "semver": "^5.4.1",
-    "suman-utils": "0.0.73121"
+    "suman-utils": "latest"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.43",
