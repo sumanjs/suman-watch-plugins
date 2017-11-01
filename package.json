@@ -1,6 +1,6 @@
 {
   "name": "suman-watch-plugins",
-  "version": "0.0.101",
+  "version": "0.0.102",
   "description": "Plugins to be used with suman-watch utilities.",
   "main": "index.js",
   "scripts": {
