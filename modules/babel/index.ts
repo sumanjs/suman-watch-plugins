@@ -38,8 +38,10 @@ const values: IPluginValues = Object.freeze({
 export const getValue = function (version?: string, input?: Partial<ISumanWatchPlugin>) {
 
   if (su.isObject(version)) {
-    log.warning(`suman-watch-plugin with name '${exportName}',` +
-      ` is using the latest version of the plugin because no desired version was passed as the first argument to getValue().`);
+    if(su.vgt(6)){
+      log.warning(`suman-watch-plugin with name '${exportName}',` +
+        ` is using the latest version of the plugin because no desired version was passed as the first argument to getValue().`);
+    }
     input = version as Partial<ISumanWatchPlugin>;
     version = 'latest';
   }

@@ -20,8 +20,10 @@ var values = Object.freeze({
 });
 exports.getValue = function (version, input) {
     if (su.isObject(version)) {
-        logging_1.log.warning("suman-watch-plugin with name '" + exports.exportName + "'," +
-            " is using the latest version of the plugin because no desired version was passed as the first argument to getValue().");
+        if (su.vgt(6)) {
+            logging_1.log.warning("suman-watch-plugin with name '" + exports.exportName + "'," +
+                " is using the latest version of the plugin because no desired version was passed as the first argument to getValue().");
+        }
         input = version;
         version = 'latest';
     }
