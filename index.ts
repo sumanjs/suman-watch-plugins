@@ -1,10 +1,7 @@
+'use strict';
+
 import fs = require('fs');
 import path = require('path');
-import assert = require('assert');
-import su = require('suman-utils');
-import util = require('util');
-import {log} from './lib/logging';
-import chalk = require('chalk');
 
 //////////////////////////////////////////////////////////////////////
 

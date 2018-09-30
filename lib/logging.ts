@@ -10,19 +10,18 @@ const global = require('suman-browser-polyfills/modules/global');
 //npm
 import chalk from 'chalk';
 
-//project
-const name = ' [suman-watch-plugins] ';
-
 ///////////////////////////////////////////////////////////////////////////
 
-//
+
 export const log = {
-  info: console.log.bind(console, name),
-  good: console.log.bind(console, chalk.cyan(name)),
-  veryGood: console.log.bind(console, chalk.green(name)),
-  warning: console.log.bind(console, chalk.yellow.bold(name)),
-  error: console.log.bind(console, chalk.red(name)),
+  info: console.log.bind(console, 'suman-watch-plugins/info:'),
+  good: console.log.bind(console, chalk.cyan('suman-watch-plugins:')),
+  veryGood: console.log.bind(console, chalk.green('suman-watch-plugins:')),
+  warning: console.log.bind(console, chalk.yellow.bold('suman-watch-plugins/warn:')),
+  error: console.log.bind(console, chalk.red('suman-watch-plugins/error:')),
   newLine: function () {
     console.log();
   }
 };
+
+export default log;

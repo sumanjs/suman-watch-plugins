@@ -15,7 +15,7 @@ import chalk from 'chalk';
 const semver = require('semver');
 
 //project
-import {log} from './logging';
+import log from './logging';
 
 ///////////////////////////////////////////////////////////////////////////
 

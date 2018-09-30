@@ -1,12 +1,9 @@
 
 ### matching files
 *.sh
-*.ts
 *.md
-*.txt
 *.log
 *.json
-*.yml
 *.DS_Store
 
 ### folders
@@ -26,10 +23,8 @@ webpack.config.js
 .gitattributes
 suman.conf.js
 .editorconfig
-.babelrc
 .dockerignore
 package-lock.json
 yarn.lock
 
-### negation
-!*.d.ts
+
