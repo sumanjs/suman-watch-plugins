@@ -24,7 +24,6 @@ webpack.config.js
 suman.conf.js
 .editorconfig
 .dockerignore
-package-lock.json
 yarn.lock
 
 

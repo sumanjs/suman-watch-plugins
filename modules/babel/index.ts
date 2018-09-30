@@ -12,7 +12,7 @@ import chalk from 'chalk';
 import su = require('suman-utils');
 
 //project
-import {log} from '../../lib/logging';
+import log from '../../lib/logging';
 import {utils} from "../../lib/util";
 
 //////////////////////////////////////////////////////////////////////
